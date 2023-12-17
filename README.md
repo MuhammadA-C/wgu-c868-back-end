@@ -45,7 +45,7 @@ WGU C868 Software Development Capstone - Back End
 * Back End: JavaScript + TypeScript, Node.JS, Express.js
 * Database: SQL, MySQL, and MySQL Workbench
 * Design: Lucidchart
-* * Version Control: Git & GitHub
+* Version Control: Git & GitHub
 
 ---
 

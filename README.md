@@ -46,6 +46,7 @@ WGU C868 Software Development Capstone - Back End
 * Database: SQL, MySQL, and MySQL Workbench
 * Design: Lucidchart
 * Version Control: Git & GitHub
+* Postman
 
 ---
 

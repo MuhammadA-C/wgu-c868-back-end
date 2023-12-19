@@ -1,6 +1,8 @@
 # wgu-c868-back-end
 WGU C868 Software Development Capstone - Back End
 
+---
+
 * University: Western Governors University (WGU)
 * Degree: Bachelor of Science in Software Development
 * Class: C868 Software Development Capstone

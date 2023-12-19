@@ -37,8 +37,7 @@ app.use((req, res, next) => {
     - Get an ordered item by id
     - Get an order status by id
 
-    - Get all ordered items by order status/order id
-    - Get all order statuses by customer id (technically, don't need since customer id is the same for this version)
+    - Get all ordered items by order order id
 */
 
 // Create

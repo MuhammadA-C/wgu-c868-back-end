@@ -48,7 +48,7 @@ exports.createMenuItem = (req, res) => {
   /*
       Need database call
     */
-  res.status(201).json({
+  return res.status(201).json({
     status: "success",
     data: { test: "test" },
   });
@@ -65,7 +65,7 @@ exports.getAllMenuItems = (req, res) => {
         });
       }
 
-      res.status(200).json({
+      return res.status(200).json({
         status: "success",
         results: rows.length,
         data: rows,
@@ -80,7 +80,7 @@ exports.getMenuItemByID = (req, res) => {
   /*
       Need database call
     */
-  res.status(200).json({
+  return res.status(200).json({
     status: "success",
     data: { test: "test" },
   });
@@ -90,7 +90,7 @@ exports.updateMenuItemByID = (req, res) => {
   /*
       Need database call
   */
-  res.status(200).json({
+  return res.status(200).json({
     status: "success",
     data: { test: "test" },
   });
@@ -100,7 +100,7 @@ exports.deleteMenuItemByID = (req, res) => {
   /*
       Need database call
   */
-  res.status(204).json({
+  return res.status(204).json({
     status: "success",
     data: null,
   });

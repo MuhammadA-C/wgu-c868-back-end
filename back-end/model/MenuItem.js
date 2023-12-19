@@ -1,4 +1,4 @@
-class MenuItem {
+module.exports = class MenuItem {
   _menuItemID;
   _name;
   _description;
@@ -51,6 +51,4 @@ class MenuItem {
   set price(price) {
     this._price = price;
   }
-}
-
-module.exports.MenuItem;
+};

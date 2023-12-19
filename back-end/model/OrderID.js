@@ -1,4 +1,4 @@
-class OrderID {
+module.exports = class OrderID {
   _orderID;
   _customerID;
   _orderStatus;
@@ -51,6 +51,4 @@ class OrderID {
   set orderPlacedDate(orderPlacedDate) {
     this._orderPlacedDate = orderPlacedDate;
   }
-}
-
-module.exports.OrderID;
+};

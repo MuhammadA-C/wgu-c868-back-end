@@ -1,5 +1,5 @@
-class OrderIDDAOImpl {
-  static orderIDs;
-}
+const orderStatus_Table = "OrderStatus";
 
-module.exports.OrderIDDAOImpl;
+module.exports = class OrderIDDAOImpl {
+  static orderIDs;
+};

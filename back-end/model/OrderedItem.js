@@ -1,4 +1,4 @@
-class OrderedItem {
+module.exports = class OrderedItem {
   _orderedItemID;
   _orderID;
   _menuItemID;
@@ -51,6 +51,4 @@ class OrderedItem {
   set quantity(quantity) {
     this._quantity = quantity;
   }
-}
-
-module.exports.OrderedItem;
+};

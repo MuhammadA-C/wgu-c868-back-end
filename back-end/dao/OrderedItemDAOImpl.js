@@ -1,5 +1,5 @@
-class OrderedItemDAOImpl {
-  static orderedItems;
-}
+const orderedItems_Table = "OrderedItems";
 
-module.exports.OrderedItemDAOImpl;
+module.exports = class OrderedItemDAOImpl {
+  static orderedItems;
+};

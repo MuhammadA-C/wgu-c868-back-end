@@ -1,5 +1,12 @@
-class MenuItemDAOImpl {
-  static menuItems;
-}
+const db = require("./database");
+const sqlHelper = require("../helper/SQLHelper");
 
-module.exports.MenuItemDAOImpl;
+const menuItems_Table = "MenuItems";
+
+module.exports = class MenuItemDAOImpl {
+  static menuItems;
+
+  static fetchAll() {
+    db.execute(SQLHelper.selectAll);
+  }
+};

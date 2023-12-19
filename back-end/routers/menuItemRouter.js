@@ -5,7 +5,7 @@ const menuItemController = require("../controllers/menuItemController");
 router
   .route("/")
   .get(menuItemController.getAllMenuItems)
-  .post(menuItemController.createMenuItem);
+  .post(menuItemController.checkBody, menuItemController.createMenuItem);
 
 router
   .route("/:id")

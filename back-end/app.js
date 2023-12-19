@@ -17,36 +17,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Checks if for the POST menu items request if the input is greater than 4
-app.use((req, res, next) => {
-  const MAX_INPUT = 4;
-
-  if (req.url === "/api/v1/menu-items" && req.method === "POST") {
-    if (Object.keys(req.body).length > MAX_INPUT) {
-      res.status(400).json({
-        status: "unsuccessful",
-        message: "You provided too many values!!",
-      });
-      return;
-    }
-  }
-  next();
-});
-
-// Checks if for the POST menu items request if the input is empty
-app.use((req, res, next) => {
-  if (req.url === "/api/v1/menu-items" && req.method === "POST") {
-    if (Object.keys(req.body).length === 0) {
-      res.status(400).json({
-        status: "unsuccessful",
-        message: "You provided too few values",
-      });
-      return;
-    }
-  }
-  next();
-});
-
 /*
   API calls to include:
     - Get all Menu Items

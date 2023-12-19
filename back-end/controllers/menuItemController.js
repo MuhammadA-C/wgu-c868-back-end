@@ -5,6 +5,22 @@ const MenuItemDAOImpl = require("../dao/MenuItemDAOImpl");
   when getting by ID. This happens because the id isn't found in the database.
 */
 
+// Middleware
+exports.checkBody = (req, res, next) => {
+  if (Object.keys(req.body).length === 0) {
+    return res.status(400).json({
+      status: "fail",
+      message: "Provided too few values",
+    });
+  } else if (Object.keys(req.body).length > 4) {
+    return res.status(400).json({
+      status: "fail",
+      message: "Provided too many values!!",
+    });
+  }
+  next();
+};
+
 exports.createMenuItem = (req, res) => {
   //const { name, description, picture, price } = req.body;
 
@@ -12,7 +28,7 @@ exports.createMenuItem = (req, res) => {
       Need database call
     */
   res.status(201).json({
-    status: "success",
+    status: "success 1",
     data: { test: "test" },
   });
 };
@@ -21,12 +37,11 @@ exports.getAllMenuItems = (req, res) => {
   MenuItemDAOImpl.fetchAll()
     .then(([rows, fieldData]) => {
       if (rows.length == 0) {
-        res.status(200).json({
+        return res.status(200).json({
           status: "success",
           results: rows.length,
           message: "Database has no data for the MenuItems table",
         });
-        return;
       }
 
       res.status(200).json({

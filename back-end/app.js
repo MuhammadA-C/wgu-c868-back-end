@@ -1,25 +1,13 @@
 const express = require("express");
-const db = require("./dao/database");
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const MenuItemDAOImpl = require("./dao/MenuItemDAOImpl");
-const OrderedIDDAO = require("./dao/OrderIDDAOImpl");
-
-/*
-MenuItemDAOImpl.fetchAll()
-  .then(([rows, fieldData]) => {
-    console.log(rows);
-  })
-  .catch((err) => {
-    throw err;
-  });
-*/
+const menuItemRouter = require("./routers/menuItemRouter");
 
 // MIDDLEWARE //
 app.use(express.json());
 
+// middleware to handle the CORS error with external domains making API calls to this API
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -27,6 +15,36 @@ app.use((req, res, next) => {
     "OPTIONS, GET, POST, PUT, PATCH, DELETE"
   );
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
+// Checks if for the POST menu items request if the input is greater than 4
+app.use((req, res, next) => {
+  const MAX_INPUT = 4;
+
+  if (req.url === "/api/v1/menu-items" && req.method === "POST") {
+    if (Object.keys(req.body).length > MAX_INPUT) {
+      res.status(400).json({
+        status: "unsuccessful",
+        message: "You provided too many values!!",
+      });
+      return;
+    }
+  }
+  next();
+});
+
+// Checks if for the POST menu items request if the input is empty
+app.use((req, res, next) => {
+  if (req.url === "/api/v1/menu-items" && req.method === "POST") {
+    if (Object.keys(req.body).length === 0) {
+      res.status(400).json({
+        status: "unsuccessful",
+        message: "You provided too few values",
+      });
+      return;
+    }
+  }
   next();
 });
 
@@ -45,62 +63,13 @@ app.use((req, res, next) => {
     - Get all ordered items by order order id
 */
 
-// Create
-app.post("/api/v1/menu-items", (req, res) => {
-  res.status(201).json({
-    status: "success",
-    data: { test: "test" },
-  });
-});
+// 3. ROUTERS //
+app.use("/api/v1/menu-items", menuItemRouter);
 
-// Read
-app.get("/api/v1/menu-items", (req, res) => {
-  MenuItemDAOImpl.fetchAll()
-    .then(([rows, fieldData]) => {
-      // API response below
-      if (rows.length == 0) {
-        res.status(200).json({
-          status: "success",
-          results: rows.length,
-          message: "The database has no data for said table",
-        });
-      } else {
-        res.status(200).json({
-          status: "success",
-          results: rows.length,
-          data: rows,
-        });
-      }
-    })
-    .catch((err) => {
-      throw err;
-    });
-});
+/*
+  Note: I need to check for empty lists returned from database calls
+  when getting by ID. This happens because the id isn't found in the database.
+*/
 
-// Read
-app.get("/api/v1/menu-items/:id", (req, res) => {
-  res.status(200).json({
-    status: "success",
-    data: { test: "test" },
-  });
-});
-
-// Update
-app.patch("/api/v1/menu-items/:id", (req, res) => {
-  res.status(200).json({
-    status: "success",
-    data: { test: "test" },
-  });
-});
-
-// Delete
-app.delete("/api/v1/menu-items/:id", (req, res) => {
-  res.status(204).json({
-    status: "success",
-    data: null,
-  });
-});
-
-///////////////////
-
+// 4. START SERVER //
 app.listen(PORT);

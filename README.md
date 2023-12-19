@@ -42,12 +42,6 @@ WGU C868 Software Development Capstone - Back End (REST API)
 
 ----
 
-## Photos of Application
-
-[NEED TO UPDATE]
-
----
-
 ## Future Improvements
 
 [NEED TO UPDATE]

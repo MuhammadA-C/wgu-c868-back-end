@@ -1,5 +1,9 @@
-const orderStatus_Table = "OrderStatus";
+const db = require("./database");
+const sqlHelper = require("../helper/SQLHelper");
+const db_tables = require("../helper/DBTable");
 
 module.exports = class OrderIDDAOImpl {
-  static orderIDs;
+  static fetchAll() {
+    return db.execute(sqlHelper.selectAll(db_tables.orderStatus_table));
+  }
 };

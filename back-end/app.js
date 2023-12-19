@@ -4,13 +4,18 @@ const db = require("./dao/database");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-db.execute("SELECT * FROM MenuItems")
-  .then((result) => {
-    console.log(result);
+const MenuItemDAOImpl = require("./dao/MenuItemDAOImpl");
+const OrderedIDDAO = require("./dao/OrderIDDAOImpl");
+
+/*
+MenuItemDAOImpl.fetchAll()
+  .then(([rows, fieldData]) => {
+    console.log(rows);
   })
   .catch((err) => {
-    console.log(err);
+    throw err;
   });
+*/
 
 // MIDDLEWARE //
 app.use(express.json());
@@ -50,11 +55,26 @@ app.post("/api/v1/menu-items", (req, res) => {
 
 // Read
 app.get("/api/v1/menu-items", (req, res) => {
-  res.status(200).json({
-    status: "success",
-    results: "insert number of objects",
-    data: { test: "test" },
-  });
+  MenuItemDAOImpl.fetchAll()
+    .then(([rows, fieldData]) => {
+      // API response below
+      if (rows.length == 0) {
+        res.status(200).json({
+          status: "success",
+          results: rows.length,
+          message: "The database has no data for said table",
+        });
+      } else {
+        res.status(200).json({
+          status: "success",
+          results: rows.length,
+          data: rows,
+        });
+      }
+    })
+    .catch((err) => {
+      throw err;
+    });
 });
 
 // Read
@@ -66,7 +86,7 @@ app.get("/api/v1/menu-items/:id", (req, res) => {
 });
 
 // Update
-app.put("/api/v1/menu-items", (req, res) => {
+app.patch("/api/v1/menu-items/:id", (req, res) => {
   res.status(200).json({
     status: "success",
     data: { test: "test" },

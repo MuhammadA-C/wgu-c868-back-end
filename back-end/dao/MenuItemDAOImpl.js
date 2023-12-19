@@ -1,12 +1,9 @@
 const db = require("./database");
 const sqlHelper = require("../helper/SQLHelper");
-
-const menuItems_Table = "MenuItems";
+const db_tables = require("../helper/DBTable");
 
 module.exports = class MenuItemDAOImpl {
-  static menuItems;
-
   static fetchAll() {
-    db.execute(SQLHelper.selectAll);
+    return db.execute(sqlHelper.selectAll(db_tables.menuItems_table));
   }
 };

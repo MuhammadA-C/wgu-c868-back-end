@@ -5,12 +5,16 @@ const menuItemController = require("../controllers/menuItemController");
 router
   .route("/")
   .get(menuItemController.getAllMenuItems)
-  .post(menuItemController.checkBody, menuItemController.createMenuItem);
+  .post(
+    menuItemController.checkBody,
+    menuItemController.checkBodyForMissingRequiredValues,
+    menuItemController.createMenuItem
+  );
 
 router
   .route("/:id")
   .get(menuItemController.getMenuItemByID)
-  .patch(menuItemController.updateMenuItemByID)
+  .patch(menuItemController.checkBody, menuItemController.updateMenuItemByID)
   .delete(menuItemController.deleteMenuItemByID);
 
 module.exports = router;

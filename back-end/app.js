@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 3001;
 
 const menuItemRouter = require("./routers/menuItemRouter");
 
@@ -48,8 +47,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// HTTP Methods //
-
 /*
   API calls to include:
     - Get all Menu Items
@@ -66,10 +63,4 @@ app.use((req, res, next) => {
 // 3. ROUTERS //
 app.use("/api/v1/menu-items", menuItemRouter);
 
-/*
-  Note: I need to check for empty lists returned from database calls
-  when getting by ID. This happens because the id isn't found in the database.
-*/
-
-// 4. START SERVER //
-app.listen(PORT);
+module.exports = app;

@@ -1,5 +1,10 @@
 const MenuItemDAOImpl = require("../dao/MenuItemDAOImpl");
 
+/*
+  Note: I need to check for empty lists returned from database calls
+  when getting by ID. This happens because the id isn't found in the database.
+*/
+
 exports.createMenuItem = (req, res) => {
   //const { name, description, picture, price } = req.body;
 

@@ -1,9 +1,16 @@
 const express = require("express");
-const mysql = require("mysql2");
-require("dotenv").config();
+const db = require("./dao/database");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+db.execute("SELECT * FROM MenuItems")
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 // MIDDLEWARE //
 app.use(express.json());

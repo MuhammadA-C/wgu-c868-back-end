@@ -38,21 +38,28 @@ exports.checkBodyForMissingRequiredValues = (req, res, next) => {
 
 // HTTP Methods for CRUD actions //
 
-/*
-  Note: I need to check for empty lists returned from database calls
-  when getting by ID. This happens because the id isn't found in the database.
-*/
-
 exports.createMenuItem = (req, res) => {
-  //const { name, description, picture, price } = req.body;
+  const { name, description, picture, price } = req.body;
 
-  /*
-      Need database call
-    */
-  return res.status(201).json({
-    status: "success",
-    data: { test: "test" },
-  });
+  MenuItemDAOImpl.create(name, description, picture, price)
+    .then(([rows, fieldData]) => {
+      return res.status(201).json({
+        status: "success",
+        data: {
+          menu_item_id: rows.insertId,
+          name,
+          description,
+          picture,
+          price,
+        },
+      });
+    })
+    .catch((error) => {
+      return res.status(500).json({
+        status: "ERROR",
+        message: error,
+      });
+    });
 };
 
 exports.getAllMenuItems = (req, res) => {
@@ -79,9 +86,6 @@ exports.getAllMenuItems = (req, res) => {
 };
 
 exports.getMenuItemByID = (req, res) => {
-  /*
-      Need database call
-    */
   MenuItemDAOImpl.getByID(req.params.id)
     .then(([rows, fieldData]) => {
       // Checks if the database returned an object that matched the id

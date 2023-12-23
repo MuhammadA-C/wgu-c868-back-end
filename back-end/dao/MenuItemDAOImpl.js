@@ -12,4 +12,13 @@ module.exports = class MenuItemDAOImpl {
       sqlHelper.selectByID(db_tables.menuItems_table, "menu_item_id", id)
     );
   }
+
+  static create(name, description, picture, price) {
+    return db.execute(sqlHelper.insertMenuItem(), [
+      name,
+      description,
+      picture,
+      price,
+    ]);
+  }
 };

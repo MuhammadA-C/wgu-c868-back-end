@@ -19,7 +19,6 @@ app.use((req, res, next) => {
 
 /*
   API calls to include:
-    - Get all Menu Items
     - Get all Ordered Items
     - Get all Order Status
 

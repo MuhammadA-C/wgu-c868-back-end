@@ -13,8 +13,12 @@ router
 
 router
   .route("/:id")
-  .get(menuItemController.getMenuItemByID)
-  .patch(menuItemController.checkBody, menuItemController.updateMenuItemByID)
-  .delete(menuItemController.deleteMenuItemByID);
+  .get(menuItemController.checkID, menuItemController.getMenuItemByID)
+  .patch(
+    menuItemController.checkID,
+    menuItemController.checkBody,
+    menuItemController.updateMenuItemByID
+  )
+  .delete(menuItemController.checkID, menuItemController.deleteMenuItemByID);
 
 module.exports = router;

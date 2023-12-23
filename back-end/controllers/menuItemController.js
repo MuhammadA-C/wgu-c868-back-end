@@ -1,7 +1,15 @@
 const MenuItemDAOImpl = require("../dao/MenuItemDAOImpl");
 const inputValidation = require("../helper/inputValidation");
 
+/*
+  Notes:
+  * Need to add a length check for how long price can be
+  * Need to add a cap for how many items (total cost) the user is allowed in their cart
+
+*/
+
 // Middleware //
+// Checks if the client passed in too many values or too few values
 exports.checkBody = (req, res, next) => {
   if (Object.keys(req.body).length === 0) {
     return res.status(400).json({
@@ -22,6 +30,7 @@ exports.checkBody = (req, res, next) => {
   next();
 };
 
+// Checks if the client did not pass in required values
 exports.checkBodyForMissingRequiredValues = (req, res, next) => {
   // Note: For numbers I'll need a different isPropertyMissing method since it isn't a string
   if (
@@ -34,6 +43,19 @@ exports.checkBodyForMissingRequiredValues = (req, res, next) => {
     });
   }
   next();
+};
+
+// Checks if the id passed by the clinet is valid by searching the database for it
+exports.checkID = (req, res, next) => {
+  MenuItemDAOImpl.getByID(req.params.id).then(([rows, fieldData]) => {
+    if (rows.length === 0) {
+      return res.status(404).json({
+        status: "fail",
+        message: `ID: ${req.params.id} does not exist`,
+      });
+    }
+    next();
+  });
 };
 
 // HTTP Methods for CRUD actions //
@@ -66,7 +88,7 @@ exports.createMenuItem = (req, res) => {
     })
     .catch((error) => {
       return res.status(500).json({
-        status: "ERROR",
+        status: "Error",
         message: error,
       });
     });
@@ -89,7 +111,7 @@ exports.getAllMenuItems = (req, res) => {
     })
     .catch((error) => {
       return res.status(500).json({
-        status: "ERROR",
+        status: "Error",
         message: error,
       });
     });
@@ -98,33 +120,55 @@ exports.getAllMenuItems = (req, res) => {
 exports.getMenuItemByID = (req, res) => {
   MenuItemDAOImpl.getByID(req.params.id)
     .then(([rows, fieldData]) => {
-      // Checks if the database returned an object that matched the id
-      if (rows.length != 0) {
-        return res.status(200).json({
-          status: "success",
-          data: rows,
-        });
-      }
-
-      // No object was found with that id
-      return res.status(204).json();
+      return res.status(200).json({
+        status: "success",
+        data: rows,
+      });
     })
     .catch((error) => {
       return res.status(500).json({
-        status: "ERROR",
+        status: "Error",
         message: error,
       });
     });
 };
 
 exports.updateMenuItemByID = (req, res) => {
-  /*
-      Need database call
-  */
-  return res.status(200).json({
-    status: "success",
-    data: { test: "test" },
-  });
+  const promises = [];
+  let counter = 0;
+  const id = req.params.id;
+
+  const obj = {
+    name: req.body.name,
+    description: req.body.description,
+    picture: req.body.picture,
+    price: req.body.price,
+  };
+
+  // Updates the field in the database if a value was provided
+  for (const key in obj) {
+    if (obj[key] != undefined) {
+      promises[counter] = MenuItemDAOImpl.update(key, obj[key], id);
+      counter++;
+    }
+  }
+
+  // Waits for all database updates to be done prior to responding back to the client
+  Promise.all(promises)
+    .then((result) => {
+      MenuItemDAOImpl.getByID(id).then(([rows, fieldData]) => {
+        return res.status(200).json({
+          status: "success",
+          data: rows,
+        });
+      });
+    })
+    .catch((error) => {
+      return res.status(500).json({
+        status: "Error",
+        message: error,
+      });
+    });
 };
 
 exports.deleteMenuItemByID = (req, res) => {

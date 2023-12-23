@@ -21,4 +21,15 @@ module.exports = class MenuItemDAOImpl {
       price,
     ]);
   }
+
+  static update(updateColumnName, updateValue, id) {
+    return db.execute(
+      sqlHelper.update(
+        db_tables.menuItems_table,
+        updateColumnName,
+        "menu_item_id"
+      ),
+      [updateValue, id]
+    );
+  }
 };

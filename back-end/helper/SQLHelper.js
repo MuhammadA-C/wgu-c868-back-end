@@ -25,8 +25,8 @@ module.exports = class SQLHelper {
     return `INSERT INTO ${db_tables.orderStatus_table} (order_id, customer_id, order_status, order_placed_date) VALUES (?, ?, ?, ?)`;
   }
 
-  static updateMenuItem() {
-    return `UPDATE ${db_tables.menuItems_table} SET name = ?, description = ?, picture = ?, price = ? WHERE menu_item_id = ?`;
+  static update(table, update_column_name, id_column_name) {
+    return `UPDATE ${table} SET ${update_column_name} = ? WHERE ${id_column_name} = ?`;
   }
 
   static updateOrderedItem() {

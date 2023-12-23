@@ -9,7 +9,27 @@ module.exports = class OrderIDDAOImpl {
 
   static getByID(id) {
     return db.execute(
-      sqlHelper.selectByID(db_tables.menuItems_table, "order_id", id)
+      sqlHelper.selectByID(db_tables.orderStatus_table, "order_id", id)
+    );
+  }
+
+  static create(order_id, customer_id, order_status, order_placed_date) {
+    return db.execute(sqlHelper.insertOrderID(), [
+      order_id,
+      customer_id,
+      order_status,
+      order_placed_date,
+    ]);
+  }
+
+  static update(updateColumnName, updateValue, id) {
+    return db.execute(
+      sqlHelper.update(
+        db_tables.orderStatus_table,
+        updateColumnName,
+        "order_id"
+      ),
+      [updateValue, id]
     );
   }
 };

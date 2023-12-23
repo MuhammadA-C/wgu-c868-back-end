@@ -9,8 +9,8 @@ module.exports = class SQLHelper {
     return `SELECT * FROM ${table} WHERE ${column_id} = ${id_value}`;
   }
 
-  static deleteByID(table, id_value) {
-    return `DELETE FROM ${table} WHERE ID = ${id_value}`;
+  static deleteByID(table, id_column_name, id_value) {
+    return `DELETE FROM ${table} WHERE ${id_column_name} = ${id_value}`;
   }
 
   static insertMenuItem() {

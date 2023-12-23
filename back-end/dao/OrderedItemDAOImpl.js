@@ -2,6 +2,8 @@ const db = require("./database");
 const sqlHelper = require("../helper/SQLHelper");
 const db_tables = require("../helper/DBTable");
 
+const orderedItemID_col = "ordered_item_id";
+
 module.exports = class OrderedItemDAOImpl {
   static fetchAll() {
     return db.execute(sqlHelper.selectAll(db_tables.orderedItems_table));
@@ -9,7 +11,7 @@ module.exports = class OrderedItemDAOImpl {
 
   static getByID(id) {
     return db.execute(
-      sqlHelper.selectByID(db_tables.orderedItems_table, "ordered_item_id", id)
+      sqlHelper.selectByID(db_tables.orderedItems_table, orderedItemID_col, id)
     );
   }
 
@@ -30,9 +32,15 @@ module.exports = class OrderedItemDAOImpl {
       sqlHelper.update(
         db_tables.orderedItems_table,
         updateColumnName,
-        "ordered_item_id"
+        orderedItemID_col
       ),
       [updateValue, id]
+    );
+  }
+
+  static delete(id) {
+    return db.execute(
+      sqlHelper.deleteByID(db_tables.orderedItems_table, orderedItemID_col, id)
     );
   }
 };

@@ -1,13 +1,6 @@
 const MenuItemDAOImpl = require("../dao/MenuItemDAOImpl");
 const inputValidation = require("../helper/inputValidation");
 
-/*
-  Notes:
-  * Need to add a length check for how long price can be
-  * Need to add a cap for how many items (total cost) the user is allowed in their cart
-
-*/
-
 // Middleware //
 // Checks if the client passed in too many values or too few values
 exports.checkBody = (req, res, next) => {
@@ -172,8 +165,14 @@ exports.updateMenuItemByID = (req, res) => {
 };
 
 exports.deleteMenuItemByID = (req, res) => {
-  /*
-      Need database call
-  */
-  return res.status(204).json();
+  MenuItemDAOImpl.delete(req.params.id)
+    .then((result) => {
+      return res.status(204).json();
+    })
+    .catch((error) => {
+      return res.status(500).json({
+        status: "Error",
+        message: error,
+      });
+    });
 };

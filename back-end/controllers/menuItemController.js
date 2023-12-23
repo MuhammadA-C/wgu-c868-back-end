@@ -39,7 +39,17 @@ exports.checkBodyForMissingRequiredValues = (req, res, next) => {
 // HTTP Methods for CRUD actions //
 
 exports.createMenuItem = (req, res) => {
-  const { name, description, picture, price } = req.body;
+  let { name, description, picture, price } = req.body;
+
+  // Set the optional picture value if it is missing
+  if (picture == undefined) {
+    picture = "";
+  }
+
+  // Set the optional description value if it is missing
+  if (description == undefined) {
+    description = "";
+  }
 
   MenuItemDAOImpl.create(name, description, picture, price)
     .then(([rows, fieldData]) => {

@@ -5,8 +5,8 @@ module.exports = class SQLHelper {
     return `SELECT * FROM ${table}`;
   }
 
-  static selectByID(table, id_value) {
-    return `SELECT * FROM ${table} WHERE ID = ${id_value}`;
+  static selectByID(table, column_id, id_value) {
+    return `SELECT * FROM ${table} WHERE ${column_id} = ${id_value}`;
   }
 
   static deleteByID(table, id_value) {

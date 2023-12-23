@@ -16,13 +16,14 @@ exports.checkBody = (req, res, next) => {
     */
     return res.status(400).json({
       status: "fail",
-      message: "Provided too many values!!",
+      message: "Provided too many values!",
     });
   }
   next();
 };
 
 exports.checkBodyForMissingRequiredValues = (req, res, next) => {
+  // Note: For numbers I'll need a different isPropertyMissing method since it isn't a string
   if (
     inputValidation.isPropertyMissing(req.body.name) ||
     inputValidation.isPropertyMissing(req.body.price)
@@ -57,22 +58,23 @@ exports.createMenuItem = (req, res) => {
 exports.getAllMenuItems = (req, res) => {
   MenuItemDAOImpl.fetchAll()
     .then(([rows, fieldData]) => {
-      if (rows.length == 0) {
+      // Checks to see if the database returned any data
+      if (rows.length != 0) {
         return res.status(200).json({
           status: "success",
           results: rows.length,
-          message: "Database has no data for the MenuItems table",
+          data: rows,
         });
       }
 
-      return res.status(200).json({
-        status: "success",
-        results: rows.length,
-        data: rows,
-      });
+      // Database returned no data
+      return res.status(204).json();
     })
-    .catch((err) => {
-      throw err;
+    .catch((error) => {
+      return res.status(500).json({
+        status: "ERROR",
+        message: error,
+      });
     });
 };
 
@@ -80,10 +82,25 @@ exports.getMenuItemByID = (req, res) => {
   /*
       Need database call
     */
-  return res.status(200).json({
-    status: "success",
-    data: { test: "test" },
-  });
+  MenuItemDAOImpl.getByID(req.params.id)
+    .then(([rows, fieldData]) => {
+      // Checks if the database returned an object that matched the id
+      if (rows.length != 0) {
+        return res.status(200).json({
+          status: "success",
+          data: rows,
+        });
+      }
+
+      // No object was found with that id
+      return res.status(204).json();
+    })
+    .catch((error) => {
+      return res.status(500).json({
+        status: "ERROR",
+        message: error,
+      });
+    });
 };
 
 exports.updateMenuItemByID = (req, res) => {
@@ -100,8 +117,5 @@ exports.deleteMenuItemByID = (req, res) => {
   /*
       Need database call
   */
-  return res.status(204).json({
-    status: "success",
-    data: null,
-  });
+  return res.status(204).json();
 };

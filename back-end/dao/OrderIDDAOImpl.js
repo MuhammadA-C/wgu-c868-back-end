@@ -22,6 +22,9 @@ module.exports = class OrderIDDAOImpl {
     ]);
   }
 
+  /*
+      Note: Only allowed to change the order_status or order_completed_date 
+  */
   static update(updateColumnName, updateValue, id) {
     return db.execute(
       sqlHelper.update(

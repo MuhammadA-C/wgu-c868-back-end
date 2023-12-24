@@ -1,4 +1,4 @@
-const OrderedItemDAOImpl = require("../dao/OrderedItemDAOImpl");
+const OrderIDDAOImpl = require("../dao/OrderIDDAOImpl");
 const inputValidation = require("../helper/inputValidation");
 
 // Middleware //
@@ -9,10 +9,10 @@ exports.checkBody = (req, res, next) => {
       status: "fail",
       message: "Provided too few values",
     });
-  } else if (Object.keys(req.body).length > 4) {
+  } else if (Object.keys(req.body).length > 5) {
     /*
-        Note: 4 in this case is in reference to the max amount of values
-        that can be passed by the client to create and add an ordered item to 
+        Note: 5 in this case is in reference to the max amount of values
+        that can be passed by the client to create and add an order status to 
         the database
     */
     return res.status(400).json({
@@ -28,14 +28,14 @@ exports.checkBodyForMissingRequiredValues = (req, res, next) => {
   // Note: For numbers I'll need a different isPropertyMissing method since it isn't a string
   if (
     inputValidation.isPropertyMissing(req.body.order_id) ||
-    inputValidation.isPropertyMissing(req.body.menu_item_id) ||
-    inputValidation.isPropertyMissing(req.body.price) ||
-    inputValidation.isPropertyMissing(req.body.quantity)
+    inputValidation.isPropertyMissing(req.body.customer_id) ||
+    inputValidation.isPropertyMissing(req.body.order_status) ||
+    inputValidation.isPropertyMissing(req.body.order_placed_date)
   ) {
     return res.status(400).json({
       status: "fail",
       message:
-        "One or more of following properties are missing (order_id, menu_item_id, price, quantity)",
+        "One or more of following properties are missing (order_id, customer_id, order_status, order_placed_date)",
     });
   }
   next();
@@ -43,7 +43,9 @@ exports.checkBodyForMissingRequiredValues = (req, res, next) => {
 
 // Checks if the id passed by the clinet is valid by searching the database for it
 exports.checkID = (req, res, next) => {
-  OrderedItemDAOImpl.getByID(req.params.id).then(([rows, fieldData]) => {
+  OrderIDDAOImpl.getByID(
+    inputValidation.formatStringURLParamaterForDB(req.params.id)
+  ).then(([rows, fieldData]) => {
     if (rows.length === 0) {
       return res.status(404).json({
         status: "fail",
@@ -54,30 +56,38 @@ exports.checkID = (req, res, next) => {
   });
 };
 
-/*
-  Notes:
-    * Need to add a check to verify that the order id is valid (present in the order status table)
-    * Need to add a check to verify if the menu item id is valid (present in the menu items table)
-
-*/
-
 // HTTP Methods for CRUD actions //
 
-exports.createOrderedItem = (req, res) => {
-  const { order_id, menu_item_id, price, quantity } = req.body;
+exports.createOrderID = (req, res) => {
+  let {
+    order_id,
+    customer_id,
+    order_status,
+    order_placed_date,
+    order_completed_date,
+  } = req.body;
 
-  console.log("Hit create");
+  // Set the optional picture value if it is missing
+  if (order_completed_date == undefined) {
+    order_completed_date = "";
+  }
 
-  OrderedItemDAOImpl.create(order_id, menu_item_id, price, quantity)
+  OrderIDDAOImpl.create(
+    order_id,
+    customer_id,
+    order_status,
+    order_placed_date,
+    order_completed_date
+  )
     .then(([rows, fieldData]) => {
       return res.status(201).json({
         status: "success",
         data: {
-          ordered_item_id: rows.insertId,
           order_id,
-          menu_item_id,
-          price,
-          quantity,
+          customer_id,
+          order_status,
+          order_placed_date,
+          order_completed_date,
         },
       });
     })
@@ -89,8 +99,8 @@ exports.createOrderedItem = (req, res) => {
     });
 };
 
-exports.getAllOrderedItems = (req, res) => {
-  OrderedItemDAOImpl.fetchAll()
+exports.getAllOrderIDs = (req, res) => {
+  OrderIDDAOImpl.fetchAll()
     .then(([rows, fieldData]) => {
       // Checks to see if the database returned any data
       if (rows.length != 0) {
@@ -112,8 +122,10 @@ exports.getAllOrderedItems = (req, res) => {
     });
 };
 
-exports.getOrderedItemByID = (req, res) => {
-  OrderedItemDAOImpl.getByID(req.params.id)
+exports.getOrderIDByID = (req, res) => {
+  OrderIDDAOImpl.getByID(
+    inputValidation.formatStringURLParamaterForDB(req.params.id)
+  )
     .then(([rows, fieldData]) => {
       return res.status(200).json({
         status: "success",
@@ -131,24 +143,20 @@ exports.getOrderedItemByID = (req, res) => {
 /*
   Note: Need to create middleware to check if the user entered more than 2 values
 */
-exports.updateOrderedItemByID = (req, res) => {
+exports.updateOrderIDByID = (req, res) => {
   const promises = [];
   let counter = 0;
+  const id = inputValidation.formatStringURLParamaterForDB(req.params.id);
 
   const obj = {
-    ordered_item_id: req.params.id,
-    price: req.body.picpriceture,
-    quantity: req.body.quantity,
+    order_status: req.body.order_status,
+    order_completed_date: req.body.order_completed_date,
   };
 
   // Updates the field in the database if a value was provided
   for (const key in obj) {
     if (obj[key] != undefined) {
-      promises[counter] = OrderedItemDAOImpl.update(
-        key,
-        obj[key],
-        obj.ordered_item_id
-      );
+      promises[counter] = OrderIDDAOImpl.update(key, obj[key], id);
       counter++;
     }
   }
@@ -156,14 +164,12 @@ exports.updateOrderedItemByID = (req, res) => {
   // Waits for all database updates to be done prior to responding back to the client
   Promise.all(promises)
     .then((result) => {
-      OrderedItemDAOImpl.getByID(obj.ordered_item_id).then(
-        ([rows, fieldData]) => {
-          return res.status(200).json({
-            status: "success",
-            data: rows,
-          });
-        }
-      );
+      OrderIDDAOImpl.getByID(id).then(([rows, fieldData]) => {
+        return res.status(200).json({
+          status: "success",
+          data: rows,
+        });
+      });
     })
     .catch((error) => {
       return res.status(500).json({
@@ -173,8 +179,10 @@ exports.updateOrderedItemByID = (req, res) => {
     });
 };
 
-exports.deleteOrderedItemByID = (req, res) => {
-  OrderedItemDAOImpl.delete(req.params.id)
+exports.deleteOrderIDByID = (req, res) => {
+  OrderIDDAOImpl.delete(
+    inputValidation.formatStringURLParamaterForDB(req.params.id)
+  )
     .then((result) => {
       return res.status(204).json();
     })

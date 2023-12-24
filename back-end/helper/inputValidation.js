@@ -4,3 +4,7 @@ exports.isPropertyMissing = (value) => {
   }
   return false;
 };
+
+exports.formatStringURLParamaterForDB = (value) => {
+  return `'${value}'`;
+};

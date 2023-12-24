@@ -28,4 +28,13 @@ module.exports = class SQLHelper {
   static update(table, update_column_name, id_column_name) {
     return `UPDATE ${table} SET ${update_column_name} = ? WHERE ${id_column_name} = ?`;
   }
+
+  static updateOrderStatus(
+    table,
+    update_column_name,
+    id_column_name,
+    id_value
+  ) {
+    return `UPDATE ${table} SET ${update_column_name} = ? WHERE ${id_column_name} = ${id_value}`;
+  }
 };

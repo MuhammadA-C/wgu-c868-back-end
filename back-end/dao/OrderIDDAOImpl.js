@@ -29,12 +29,13 @@ module.exports = class OrderIDDAOImpl {
   */
   static update(updateColumnName, updateValue, id) {
     return db.execute(
-      sqlHelper.update(
+      sqlHelper.updateOrderStatus(
         db_tables.orderStatus_table,
         updateColumnName,
-        orderID_col
+        orderID_col,
+        id
       ),
-      [updateValue, id]
+      [updateValue]
     );
   }
 

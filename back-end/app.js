@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 
 const menuItemRouter = require("./routers/menuItemRouter");
+const orderedItemRouter = require("./routers/orderedItemRouter");
+const orderIDRouter = require("./routers/orderIDRouter");
 
 // MIDDLEWARE //
 app.use(express.json());
@@ -20,16 +22,15 @@ app.use((req, res, next) => {
 /*
   API calls to include:
     - Get all Ordered Items
-    - Get all Order Status
 
-    - Get a menu item by id
     - Get an ordered item by id
-    - Get an order status by id
 
     - Get all ordered items by order order id
 */
 
 // 3. ROUTERS //
 app.use("/api/v1/menu-items", menuItemRouter);
+app.use("/api/v1/ordered-items", orderedItemRouter);
+app.use("/api/v1/order-ids", orderIDRouter);
 
 module.exports = app;

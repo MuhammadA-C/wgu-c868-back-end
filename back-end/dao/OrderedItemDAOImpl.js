@@ -27,6 +27,7 @@ module.exports = class OrderedItemDAOImpl {
   /*
       Note: Only allowed to change the price or quantity
   */
+
   static update(updateColumnName, updateValue, id) {
     return db.execute(
       sqlHelper.update(

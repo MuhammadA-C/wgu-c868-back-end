@@ -2,6 +2,7 @@ const MenuItemDAOImpl = require("../dao/MenuItemDAOImpl");
 const inputValidation = require("../helper/inputValidation");
 
 // Middleware //
+
 // Checks if the client passed in too many values or too few values
 exports.checkBody = (req, res, next) => {
   if (Object.keys(req.body).length === 0) {
@@ -10,11 +11,7 @@ exports.checkBody = (req, res, next) => {
       message: "Provided too few values",
     });
   } else if (Object.keys(req.body).length > 4) {
-    /*
-        Note: 4 in this case is in reference to the max amount of values
-        that can be passed by the client to create and add a menu item to 
-        the database
-    */
+    // 4 represents the max amount of fields the user can change for the object
     return res.status(400).json({
       status: "fail",
       message: "Provided too many values!",

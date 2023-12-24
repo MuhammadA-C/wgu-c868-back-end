@@ -1,5 +1,7 @@
 const OrderedItemDAOImpl = require("../dao/OrderedItemDAOImpl");
 const inputValidation = require("../helper/inputValidation");
+const MenuItemDAOImpl = require("../dao/MenuItemDAOImpl"); //Used in the middleware to verify the menu item id
+const OrderIDDAOImpl = require("../dao/OrderIDDAOImpl"); //Used in the middleware to verify the order id
 
 // Middleware //
 // Checks if the client passed in too many values or too few values
@@ -10,11 +12,7 @@ exports.checkBody = (req, res, next) => {
       message: "Provided too few values",
     });
   } else if (Object.keys(req.body).length > 4) {
-    /*
-        Note: 4 in this case is in reference to the max amount of values
-        that can be passed by the client to create and add an ordered item to 
-        the database
-    */
+    // 4 represents the max amount of fields the user can change for the object
     return res.status(400).json({
       status: "fail",
       message: "Provided too many values!",
@@ -54,12 +52,33 @@ exports.checkID = (req, res, next) => {
   });
 };
 
-/*
-  Notes:
-    * Need to add a check to verify that the order id is valid (present in the order status table)
-    * Need to add a check to verify if the menu item id is valid (present in the menu items table)
+// Checks if the menu item id passed by the client is valid by searching the database for it
+exports.checkMenuItemID = (req, res, next) => {
+  MenuItemDAOImpl.getByID(req.body.menu_item_id).then(([rows, fieldData]) => {
+    if (rows.length === 0) {
+      return res.status(404).json({
+        status: "fail",
+        message: `Menu Item with ID: ${req.body.menu_item_id} does not exist`,
+      });
+    }
+    next();
+  });
+};
 
-*/
+// Checks if the order id passed by the client is valid by searching the database for it
+exports.checkOrderID = (req, res, next) => {
+  OrderIDDAOImpl.getByID(
+    inputValidation.formatStringURLParamaterForDB(req.body.order_id)
+  ).then(([rows, fieldData]) => {
+    if (rows.length === 0) {
+      return res.status(404).json({
+        status: "fail",
+        message: `Order ID with ID: ${req.body.order_id} does not exist`,
+      });
+    }
+    next();
+  });
+};
 
 // HTTP Methods for CRUD actions //
 

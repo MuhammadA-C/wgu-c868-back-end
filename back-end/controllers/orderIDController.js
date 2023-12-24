@@ -10,11 +10,7 @@ exports.checkBody = (req, res, next) => {
       message: "Provided too few values",
     });
   } else if (Object.keys(req.body).length > 5) {
-    /*
-        Note: 5 in this case is in reference to the max amount of values
-        that can be passed by the client to create and add an order status to 
-        the database
-    */
+    // 5 represents the max amount of fields the user can change for the object
     return res.status(400).json({
       status: "fail",
       message: "Provided too many values!",

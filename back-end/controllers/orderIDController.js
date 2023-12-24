@@ -136,9 +136,6 @@ exports.getOrderIDByID = (req, res) => {
     });
 };
 
-/*
-  Note: Need to create middleware to check if the user entered more than 2 values
-*/
 exports.updateOrderIDByID = (req, res) => {
   const promises = [];
   let counter = 0;
@@ -188,4 +185,22 @@ exports.deleteOrderIDByID = (req, res) => {
         message: error,
       });
     });
+};
+
+exports.getAllOrderedItemsByOrderID = (req, res) => {
+  OrderIDDAOImpl.selectAllOrderedItemsByOrderID(
+    inputValidation.formatStringURLParamaterForDB(req.params.id)
+  ).then(([rows, fieldData]) => {
+    // Checks if the database returned any data
+    if (rows.length != 0) {
+      return res.status(200).json({
+        status: "success",
+        results: rows.length,
+        data: rows,
+      });
+    }
+
+    // Database returned no data
+    return res.status(204).json();
+  });
 };

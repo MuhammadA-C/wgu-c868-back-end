@@ -24,9 +24,7 @@ module.exports = class OrderIDDAOImpl {
     ]);
   }
 
-  /*
-      Note: Only allowed to change the order_status or order_completed_date 
-  */
+  // Note: Only allowed to change the order_status or order_completed_date
   static update(updateColumnName, updateValue, id) {
     return db.execute(
       sqlHelper.updateOrderStatus(
@@ -43,5 +41,9 @@ module.exports = class OrderIDDAOImpl {
     return db.execute(
       sqlHelper.deleteByID(db_tables.orderStatus_table, orderID_col, id)
     );
+  }
+
+  static selectAllOrderedItemsByOrderID(id) {
+    return db.execute(sqlHelper.selectAllOrderedItemsByOrderID(id));
   }
 };

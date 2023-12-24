@@ -24,6 +24,7 @@ module.exports = class MenuItemDAOImpl {
     ]);
   }
 
+  // Note: name, discription, picture, and price are only allowed to be changed
   static update(updateColumnName, updateValue, id) {
     return db.execute(
       sqlHelper.update(

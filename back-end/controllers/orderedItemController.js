@@ -85,8 +85,6 @@ exports.checkOrderID = (req, res, next) => {
 exports.createOrderedItem = (req, res) => {
   const { order_id, menu_item_id, price, quantity } = req.body;
 
-  console.log("Hit create");
-
   OrderedItemDAOImpl.create(order_id, menu_item_id, price, quantity)
     .then(([rows, fieldData]) => {
       return res.status(201).json({
@@ -147,9 +145,6 @@ exports.getOrderedItemByID = (req, res) => {
     });
 };
 
-/*
-  Note: Need to create middleware to check if the user entered more than 2 values
-*/
 exports.updateOrderedItemByID = (req, res) => {
   const promises = [];
   let counter = 0;

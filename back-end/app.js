@@ -19,18 +19,15 @@ app.use((req, res, next) => {
   next();
 });
 
-/*
-  API calls to include:
-    - Get all Ordered Items
-
-    - Get an ordered item by id
-
-    - Get all ordered items by order order id
-*/
-
 // 3. ROUTERS //
 app.use("/api/v1/menu-items", menuItemRouter);
 app.use("/api/v1/ordered-items", orderedItemRouter);
 app.use("/api/v1/order-ids", orderIDRouter);
 
 module.exports = app;
+
+/*
+  Note:
+    * I can add date validation 
+
+*/

@@ -37,4 +37,8 @@ module.exports = class SQLHelper {
   ) {
     return `UPDATE ${table} SET ${update_column_name} = ? WHERE ${id_column_name} = ${id_value}`;
   }
+
+  static selectAllOrderedItemsByOrderID(id) {
+    return `SELECT * FROM ${db_tables.orderedItems_table} WHERE order_id = ${id}`;
+  }
 };

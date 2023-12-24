@@ -21,4 +21,11 @@ router
   )
   .delete(orderIDController.checkID, orderIDController.deleteOrderIDByID);
 
+router
+  .route("/:id/ordered-items")
+  .get(
+    orderIDController.checkID,
+    orderIDController.getAllOrderedItemsByOrderID
+  );
+
 module.exports = router;

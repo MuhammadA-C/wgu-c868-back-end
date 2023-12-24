@@ -134,9 +134,9 @@ exports.getOrderedItemByID = (req, res) => {
 exports.updateOrderedItemByID = (req, res) => {
   const promises = [];
   let counter = 0;
+  const id = req.params.id;
 
   const obj = {
-    ordered_item_id: req.params.id,
     price: req.body.picpriceture,
     quantity: req.body.quantity,
   };
@@ -144,11 +144,7 @@ exports.updateOrderedItemByID = (req, res) => {
   // Updates the field in the database if a value was provided
   for (const key in obj) {
     if (obj[key] != undefined) {
-      promises[counter] = OrderedItemDAOImpl.update(
-        key,
-        obj[key],
-        obj.ordered_item_id
-      );
+      promises[counter] = OrderedItemDAOImpl.update(key, obj[key], id);
       counter++;
     }
   }
@@ -156,14 +152,12 @@ exports.updateOrderedItemByID = (req, res) => {
   // Waits for all database updates to be done prior to responding back to the client
   Promise.all(promises)
     .then((result) => {
-      OrderedItemDAOImpl.getByID(obj.ordered_item_id).then(
-        ([rows, fieldData]) => {
-          return res.status(200).json({
-            status: "success",
-            data: rows,
-          });
-        }
-      );
+      OrderedItemDAOImpl.getByID(id).then(([rows, fieldData]) => {
+        return res.status(200).json({
+          status: "success",
+          data: rows,
+        });
+      });
     })
     .catch((error) => {
       return res.status(500).json({

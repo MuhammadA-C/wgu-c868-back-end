@@ -7,7 +7,6 @@ router
   .get(orderedItemController.getAllOrderedItems)
   .post(
     orderedItemController.checkBody,
-    orderedItemController.checkMenuItemID,
     orderedItemController.checkOrderID,
     orderedItemController.checkBodyForMissingRequiredValues,
     orderedItemController.createOrderedItem
@@ -18,7 +17,6 @@ router
   .get(orderedItemController.checkID, orderedItemController.getOrderedItemByID)
   .patch(
     orderedItemController.checkID,
-    orderedItemController.checkMenuItemID,
     orderedItemController.checkOrderID,
     orderedItemController.checkBody,
     orderedItemController.updateOrderedItemByID

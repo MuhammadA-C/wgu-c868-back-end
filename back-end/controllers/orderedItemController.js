@@ -26,14 +26,14 @@ exports.checkBodyForMissingRequiredValues = (req, res, next) => {
   // Note: For numbers I'll need a different isPropertyMissing method since it isn't a string
   if (
     inputValidation.isPropertyMissing(req.body.order_id) ||
-    inputValidation.isPropertyMissing(req.body.menu_item_id) ||
+    inputValidation.isPropertyMissing(req.body.menu_item_name) ||
     inputValidation.isPropertyMissing(req.body.price) ||
     inputValidation.isPropertyMissing(req.body.quantity)
   ) {
     return res.status(400).json({
       status: "fail",
       message:
-        "One or more of following properties are missing (order_id, menu_item_id, price, quantity)",
+        "One or more of following properties are missing (order_id, menu_item_name, price, quantity)",
     });
   }
   next();
@@ -46,19 +46,6 @@ exports.checkID = (req, res, next) => {
       return res.status(404).json({
         status: "fail",
         message: `ID: ${req.params.id} does not exist`,
-      });
-    }
-    next();
-  });
-};
-
-// Checks if the menu item id passed by the client is valid by searching the database for it
-exports.checkMenuItemID = (req, res, next) => {
-  MenuItemDAOImpl.getByID(req.body.menu_item_id).then(([rows, fieldData]) => {
-    if (rows.length === 0) {
-      return res.status(404).json({
-        status: "fail",
-        message: `Menu Item with ID: ${req.body.menu_item_id} does not exist`,
       });
     }
     next();
@@ -83,16 +70,16 @@ exports.checkOrderID = (req, res, next) => {
 // HTTP Methods for CRUD actions //
 
 exports.createOrderedItem = (req, res) => {
-  const { order_id, menu_item_id, price, quantity } = req.body;
+  const { order_id, menu_item_name, price, quantity } = req.body;
 
-  OrderedItemDAOImpl.create(order_id, menu_item_id, price, quantity)
+  OrderedItemDAOImpl.create(order_id, menu_item_name, price, quantity)
     .then(([rows, fieldData]) => {
       return res.status(201).json({
         status: "success",
         data: {
           ordered_item_id: rows.insertId,
           order_id,
-          menu_item_id,
+          menu_item_name,
           price,
           quantity,
         },
@@ -151,7 +138,7 @@ exports.updateOrderedItemByID = (req, res) => {
   const id = req.params.id;
 
   const obj = {
-    price: req.body.picpriceture,
+    price: req.body.price,
     quantity: req.body.quantity,
   };
 

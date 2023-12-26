@@ -18,7 +18,7 @@ module.exports = class SQLHelper {
   }
 
   static insertOrderedItem() {
-    return `INSERT INTO ${db_tables.orderedItems_table} (order_id, menu_item_id, price, quantity) VALUES (?, ?, ?, ?)`;
+    return `INSERT INTO ${db_tables.orderedItems_table} (order_id, menu_item_name, price, quantity) VALUES (?, ?, ?, ?)`;
   }
 
   static insertOrderID() {

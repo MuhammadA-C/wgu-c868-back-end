@@ -15,10 +15,10 @@ module.exports = class OrderedItemDAOImpl {
     );
   }
 
-  static create(order_id, menu_item_id, price, quantity) {
+  static create(order_id, menu_item_name, price, quantity) {
     return db.execute(sqlHelper.insertOrderedItem(), [
       order_id,
-      menu_item_id,
+      menu_item_name,
       price,
       quantity,
     ]);

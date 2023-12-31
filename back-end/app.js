@@ -25,9 +25,3 @@ app.use("/api/v1/ordered-items", orderedItemRouter);
 app.use("/api/v1/order-ids", orderIDRouter);
 
 module.exports = app;
-
-/*
-  Note:
-    * I can add date validation 
-
-*/

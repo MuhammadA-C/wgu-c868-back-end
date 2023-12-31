@@ -22,7 +22,6 @@ exports.checkBody = (req, res, next) => {
 
 // Checks if the client did not pass in required values
 exports.checkBodyForMissingRequiredValues = (req, res, next) => {
-  // Note: For numbers I'll need a different isPropertyMissing method since it isn't a string
   if (
     inputValidation.isPropertyMissing(req.body.name) ||
     inputValidation.isPropertyMissing(req.body.price)

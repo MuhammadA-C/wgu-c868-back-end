@@ -1,5 +1,6 @@
 const db_tables = require("./DBTable");
 
+/* Class containing the SQL code for the database */
 module.exports = class SQLHelper {
   static selectAll(table) {
     return `SELECT * FROM ${table}`;

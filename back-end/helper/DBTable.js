@@ -1,3 +1,4 @@
+/* Class containing references to the database table names */
 module.exports = class DBTable {
   static orderedItems_table = "OrderedItems";
   static menuItems_table = "MenuItems";

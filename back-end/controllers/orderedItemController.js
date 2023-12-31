@@ -1,6 +1,5 @@
 const OrderedItemDAOImpl = require("../dao/OrderedItemDAOImpl");
 const inputValidation = require("../helper/inputValidation");
-const MenuItemDAOImpl = require("../dao/MenuItemDAOImpl"); //Used in the middleware to verify the menu item id
 const OrderIDDAOImpl = require("../dao/OrderIDDAOImpl"); //Used in the middleware to verify the order id
 
 // Middleware //
@@ -23,7 +22,6 @@ exports.checkBody = (req, res, next) => {
 
 // Checks if the client did not pass in required values
 exports.checkBodyForMissingRequiredValues = (req, res, next) => {
-  // Note: For numbers I'll need a different isPropertyMissing method since it isn't a string
   if (
     inputValidation.isPropertyMissing(req.body.order_id) ||
     inputValidation.isPropertyMissing(req.body.menu_item_name) ||

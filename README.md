@@ -157,6 +157,53 @@ The minimum requirements for the capstone project were:
 
 ----
 
+## API data examples for GET requests
+
+### GET /api/v1/order-ids
+```
+{
+    "status": "success",
+    "results": 2,
+    "data": [
+        {
+            "order_id": "151-289225-7530",
+            "customer_id": 1,
+            "order_status": "Placed",
+            "order_placed_date": "2023-12-31T01:49:56.925Z",
+            "order_completed_date": null
+        },
+        {
+            "order_id": "172-141678-5227",
+            "customer_id": 1,
+            "order_status": "Placed",
+            "order_placed_date": "2023-12-31T01:35:41.865Z",
+            "order_completed_date": null
+        }
+    ]
+}
+```
+*Code example above shows the API result for getting all order ids*
+
+### GET /api/v1/order-ids/:id
+
+```
+{
+    "status": "success",
+    "data": [
+        {
+            "order_id": "151-289225-7530",
+            "customer_id": 1,
+            "order_status": "Placed",
+            "order_placed_date": "2023-12-31T01:49:56.925Z",
+            "order_completed_date": null
+        }
+    ]
+}
+```
+*Code example above shows the API result returned for getting an order id by id*
+
+---
+
 ## Future Improvements
 
 [NEED TO UPDATE]

@@ -49,6 +49,13 @@ The minimum requirements for the capstone project were:
 ![Screenshot of the database schema](https://github.com/MuhammadA-C/wgu-c868-back-end/blob/main/pictures/WGU-C868-Database-ERD%20copy.png)
 *Screenshot of the database schema*
 
+### Note
+
+Originally, I had the menu_item_id as a foreign key for the OrderedItems table, but then I had to remove it after realizing that the foreign key constraint would cause issues with not allowing 
+the user to delete a menu item if a customer ordered the item because the menu_item_id foreign key is being used. 
+
+So, instead I switched to using the menu_item_name and not making it a foreign key for the OrderedItems table.
+
 ---
 
 ## REST API Design

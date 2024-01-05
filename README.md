@@ -56,6 +56,9 @@ The minimum requirements for the capstone project were:
 ### Menu Items Endpoints:
 **GET HTTP:**
 * Get all menu items -> ```GET /api/v1/menu-items```
+  * Success (yes, data) returns 200 HTTP status code 
+  * Success (no data) returns 204 HTTP status code
+  * Error reutrns 500 HTTP status code
 * Get menu item by id -> ```GET /api/v1/menu-items/:id```
 
 **POST HTTP:**
@@ -71,6 +74,9 @@ The minimum requirements for the capstone project were:
 ### Ordered Items Endpoints:
 **GET HTTP:**
 * Get all ordered items -> ```GET /api/v1/ordered-items```
+  * Success (yes, data) returns 200 HTTP status code 
+  * Success (no data) returns 204 HTTP status code
+  * Error reutrns 500 HTTP status code
 * Get ordered item by id -> ```GET /api/v1/ordered-items/:id```
 
 **POST HTTP:**
@@ -86,6 +92,9 @@ The minimum requirements for the capstone project were:
 ### Order IDs Endpoints:
 **GET HTTP:**
 * Get all order ids -> ```GET /api/v1/order-ids```
+  * Success (yes, data) returns 200 HTTP status code 
+  * Success (no data) returns 204 HTTP status code
+  * Error reutrns 500 HTTP status code
 * Get order id by id -> ```GET /api/v1/order-ids/:id```
 * Get all ordered items by order id -> ```GET /api/v1/order-ids/:id/ordered-items```
 

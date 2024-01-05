@@ -18,6 +18,14 @@ WGU C868 Software Development Capstone - Back End (REST API)
 
 ---
 
+## Front End
+
+The Front End was created in a separate repository
+
+Link-> https://github.com/MuhammadA-C/wgu-c868-front-end
+
+---
+
 ## Project Requirements
 
 The minimum requirements for the capstone project were:

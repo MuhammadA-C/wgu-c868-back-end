@@ -66,6 +66,7 @@ The minimum requirements for the capstone project were:
 ### Order IDs Endpoints:
 * Get all order ids-> ```GET /api/v1/order-ids```
 * Get order id by id-> ```GET /api/v1/order-ids/:id```
+* Get all ordered items by order id-> ```GET /api/v1/order-ids/:id/ordered-items```
 
 
 ----

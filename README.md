@@ -26,7 +26,8 @@ WGU C868 Software Development Capstone - Back End (REST API)
 
 ## Database Design
 
-[NEED TO UPDATE]
+!(Screenshot of the database schema)[https://github.com/MuhammadA-C/wgu-c868-back-end/blob/main/pictures/WGU-C868-Database-ERD.png]
+*Screenshot of the database schema*
 
 ---
 

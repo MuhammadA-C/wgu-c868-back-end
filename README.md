@@ -20,7 +20,16 @@ WGU C868 Software Development Capstone - Back End (REST API)
 
 ## Project Requirements
 
-[NEED TO UPDATE]
+The minimum requirements for the capstone project were:
+
+Build a mobile, desktop or web application
+Code including inheritance, polymorphism, and encapsulation
+Search functionality with multiple row results
+Database to securely add, modify, and delete data
+Ability to generate reports with multiple columns & rows
+Exception controls
+Validation functionality
+Deploy application
 
 ---
 

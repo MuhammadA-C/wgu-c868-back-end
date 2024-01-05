@@ -66,6 +66,7 @@ WGU C868 Software Development Capstone - Back End (REST API)
 * MySQL Workbench v8.0.34 (macOS ARM, 64-bit)
 * Visual Studio Code v1.81.1
 * Postman v10.21.4
+* NodeJS v20.10.0
 
 NPM Packages:
 * dotenv

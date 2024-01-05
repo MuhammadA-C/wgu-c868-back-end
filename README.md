@@ -61,6 +61,9 @@ The minimum requirements for the capstone project were:
 **POST HTTP:**
 * Create a menu item -> ```POST /api/v1/menu-items```
 
+**PATCH HTTP:**
+* Update menu item by id -> ```PATCH /api/v1/menu-items/:id```
+
 **DELETE HTTP:**
 * Delete menu item by id -> ```DELETE /api/v1/menu-items/:id```
 
@@ -71,11 +74,13 @@ The minimum requirements for the capstone project were:
 * Get ordered item by id -> ```GET /api/v1/ordered-items/:id```
 
 **POST HTTP:**
-* Create an ordered item -> ```POST /api/v1/ordered-items```
+* Create ordered item -> ```POST /api/v1/ordered-items```
+
+**PATCH HTTP:**
+* Update ordered item by id -> ```PATCH /api/v1/ordered-items/:id```
 
 **DELETE HTTP:**
 * Delete ordered item by id -> ```DELETE /api/v1/ordered-items/:id```
-
 
 
 ### Order IDs Endpoints:
@@ -85,7 +90,10 @@ The minimum requirements for the capstone project were:
 * Get all ordered items by order id -> ```GET /api/v1/order-ids/:id/ordered-items```
 
 **POST HTTP:**
-* Create an order id -> ```POST /api/v1/order-ids```
+* Create order id -> ```POST /api/v1/order-ids```
+
+**PATCH HTTP:**
+* Update order id by id -> ```PATCH /api/v1/order-ids/:id```
 
 **DELETE HTTP:**
 * Delete order id by id -> ```GET /api/v1/order-ids/:id```

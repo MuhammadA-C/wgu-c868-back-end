@@ -6,7 +6,7 @@ WGU C868 Software Development Capstone - Back End (REST API)
 * University: Western Governors University (WGU)
 * Degree: Bachelor of Science in Software Development
 * Class: C868 Software Development Capstone
-* Date:
+* Date: 01/04/2024
 * Project Type: Individual Project
 
 ---

@@ -53,7 +53,20 @@ The minimum requirements for the capstone project were:
 
 ## REST API Design
 
-[NEED TO UPDATE]
+### Menu Items Endpoints:
+* Get all menu items -> ```GET /api/v1/menu-items```
+* Get menu item by id -> ```GET /api/v1/menu-items/:id```
+
+
+### Ordered Items Endpoints:
+* Get all ordered items-> ```GET /api/v1/ordered-items```
+* Get ordered item by id-> ```GET /api/v1/ordered-items/:id```
+
+
+### Order IDs Endpoints:
+* Get all order ids-> ```GET /api/v1/order-ids```
+* Get order id by id-> ```GET /api/v1/order-ids/:id```
+
 
 ----
 

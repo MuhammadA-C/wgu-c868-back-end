@@ -59,24 +59,31 @@ The minimum requirements for the capstone project were:
   * Success (yes, data) returns 200 HTTP status code 
   * Success (no data) returns 204 HTTP status code
   * Error reutrns 500 HTTP status code
+  * Data returned: Returned back a list of items
 * Get menu item by id -> ```GET /api/v1/menu-items/:id```
   * Success returns 200 HTTP status code 
   * Error reutrns 500 HTTP status code
+  * Data returned: Returns back the item matching the id
 
 **POST HTTP:**
 * Create a menu item -> ```POST /api/v1/menu-items```
   * Success returns 201 HTTP status code 
   * Error reutrns 500 HTTP status code
+  * Input values: You can only supply values for name, description, picture, and price
+  * Data returned: Returns back the created item
 
 **PATCH HTTP:**
 * Update menu item by id -> ```PATCH /api/v1/menu-items/:id```
   * Success returns 200 HTTP status code 
   * Error reutrns 500 HTTP status code
+  * Input values: You can only supply values for name, description, picture, and price
+  * Data returned: Returns back the updated item
 
 **DELETE HTTP:**
 * Delete menu item by id -> ```DELETE /api/v1/menu-items/:id```
   * Success returns 204 HTTP status code 
   * Error reutrns 500 HTTP status code
+  * Data returned: No data returned
 
 
 ### Ordered Items Endpoints:

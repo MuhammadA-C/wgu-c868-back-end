@@ -56,60 +56,76 @@ The minimum requirements for the capstone project were:
 ### Menu Items Endpoints:
 **GET HTTP:**
 * Get all menu items -> ```GET /api/v1/menu-items```
-  * Success (yes, data) returns 200 HTTP status code 
-  * Success (no data) returns 204 HTTP status code
-  * Error reutrns 500 HTTP status code
+  * Success (yes, data) returns a 200 HTTP status code 
+  * Success (no data) returns a 204 HTTP status code
+  * Error reutrns a 500 HTTP status code
   * Data returned: Returned back a list of items
 * Get menu item by id -> ```GET /api/v1/menu-items/:id```
-  * Success returns 200 HTTP status code 
-  * Error reutrns 500 HTTP status code
+  * Success returns a 200 HTTP status code 
+  * Error reutrns a 500 HTTP status code
   * Data returned: Returns back the item matching the id
 
 **POST HTTP:**
 * Create a menu item -> ```POST /api/v1/menu-items```
-  * Success returns 201 HTTP status code 
-  * Error reutrns 500 HTTP status code
+  * Success returns a 201 HTTP status code 
+  * Error reutrns a 500 HTTP status code
   * Input values: You can only supply values for name, description, picture, and price
   * Data returned: Returns back the created item
 
 **PATCH HTTP:**
 * Update menu item by id -> ```PATCH /api/v1/menu-items/:id```
-  * Success returns 200 HTTP status code 
-  * Error reutrns 500 HTTP status code
+  * Success returns a 200 HTTP status code 
+  * Error reutrns a 500 HTTP status code
   * Input values: You can only supply values for name, description, picture, and price
   * Data returned: Returns back the updated item
 
 **DELETE HTTP:**
 * Delete menu item by id -> ```DELETE /api/v1/menu-items/:id```
-  * Success returns 204 HTTP status code 
-  * Error reutrns 500 HTTP status code
+  * Success returns a 204 HTTP status code 
+  * Error reutrns a 500 HTTP status code
   * Data returned: No data returned
 
 
 ### Ordered Items Endpoints:
 **GET HTTP:**
 * Get all ordered items -> ```GET /api/v1/ordered-items```
-  * Success (yes, data) returns 200 HTTP status code 
-  * Success (no data) returns 204 HTTP status code
-  * Error reutrns 500 HTTP status code
+  * Success (yes, data) returns a 200 HTTP status code 
+  * Success (no data) returns a 204 HTTP status code
+  * Error reutrns a 500 HTTP status code
+  * Data returned: Returns back a list of items 
 * Get ordered item by id -> ```GET /api/v1/ordered-items/:id```
+  * Success returns a 200 HTTP status code
+  * Error returns a 500 HTTP status code
+  * Data returned: Returns back the item matching the id
 
 **POST HTTP:**
 * Create ordered item -> ```POST /api/v1/ordered-items```
+* Success returns a 201 HTTP status code
+* Error returns a 500 HTTP status code
+* Input values: You can only supply values for the menu item name, order id, price, and quantity
+* Data returned: Returns back the created item
 
 **PATCH HTTP:**
 * Update ordered item by id -> ```PATCH /api/v1/ordered-items/:id```
+* Success returns a 200 HTTP status code
+* Error returns a 500 HTTP status code
+* Input values: You can only supply values for the price and quantity
+* Data returned: Returns back the updated item
 
 **DELETE HTTP:**
 * Delete ordered item by id -> ```DELETE /api/v1/ordered-items/:id```
+* Success returns a 204 HTTP status code
+* Error returns a 500 HTTP status code
+* Data returned: No data returned
 
 
 ### Order IDs Endpoints:
 **GET HTTP:**
 * Get all order ids -> ```GET /api/v1/order-ids```
-  * Success (yes, data) returns 200 HTTP status code 
-  * Success (no data) returns 204 HTTP status code
-  * Error reutrns 500 HTTP status code
+  * Success (yes, data) returns a 200 HTTP status code 
+  * Success (no data) returns a 204 HTTP status code
+  * Error reutrns a 500 HTTP status code
+  * Data returned: Returns back a list of items 
 * Get order id by id -> ```GET /api/v1/order-ids/:id```
 * Get all ordered items by order id -> ```GET /api/v1/order-ids/:id/ordered-items```
 

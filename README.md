@@ -206,7 +206,8 @@ The minimum requirements for the capstone project were:
 
 ## Future Improvements
 
-[NEED TO UPDATE]
+If I were to work on this capstone project more then I would:
+* Look into using MongoDB for the database instead of MySQL
 
 ---
 

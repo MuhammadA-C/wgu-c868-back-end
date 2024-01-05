@@ -150,7 +150,7 @@ The minimum requirements for the capstone project were:
   * Data returned: Returns back the updated item
 
 **DELETE HTTP:**
-* Delete order id by id endpoint -> ```GET /api/v1/order-ids/:id```
+* Delete order id by id endpoint -> ```DELETE /api/v1/order-ids/:id```
   * Success returns a 204 HTTP status code
   * Error returns a 500 HTTP status code
   * Data returned: No data returned

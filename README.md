@@ -54,19 +54,41 @@ The minimum requirements for the capstone project were:
 ## REST API Design
 
 ### Menu Items Endpoints:
+**GET HTTP:**
 * Get all menu items -> ```GET /api/v1/menu-items```
 * Get menu item by id -> ```GET /api/v1/menu-items/:id```
 
+**POST HTTP:**
+* Create a menu item -> ```POST /api/v1/menu-items```
+
+**DELETE HTTP:**
+* Delete menu item by id -> ```DELETE /api/v1/menu-items/:id```
+
 
 ### Ordered Items Endpoints:
-* Get all ordered items-> ```GET /api/v1/ordered-items```
-* Get ordered item by id-> ```GET /api/v1/ordered-items/:id```
+**GET HTTP:**
+* Get all ordered items -> ```GET /api/v1/ordered-items```
+* Get ordered item by id -> ```GET /api/v1/ordered-items/:id```
+
+**POST HTTP:**
+* Create an ordered item -> ```POST /api/v1/ordered-items```
+
+**DELETE HTTP:**
+* Delete ordered item by id -> ```DELETE /api/v1/ordered-items/:id```
+
 
 
 ### Order IDs Endpoints:
-* Get all order ids-> ```GET /api/v1/order-ids```
-* Get order id by id-> ```GET /api/v1/order-ids/:id```
-* Get all ordered items by order id-> ```GET /api/v1/order-ids/:id/ordered-items```
+**GET HTTP:**
+* Get all order ids -> ```GET /api/v1/order-ids```
+* Get order id by id -> ```GET /api/v1/order-ids/:id```
+* Get all ordered items by order id -> ```GET /api/v1/order-ids/:id/ordered-items```
+
+**POST HTTP:**
+* Create an order id -> ```POST /api/v1/order-ids```
+
+**DELETE HTTP:**
+* Delete order id by id -> ```GET /api/v1/order-ids/:id```
 
 
 ----

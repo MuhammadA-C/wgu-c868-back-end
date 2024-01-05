@@ -50,8 +50,8 @@ WGU C868 Software Development Capstone - Back End (REST API)
 
 ## Tools Used
 
-* Back End: JavaScript + TypeScript, Node.JS, Express.js
-* Database: SQL, MySQL, and MySQL Workbench
+* Back End: JavaScript, Node.JS, Express.js
+* Database: SQL, MySQL, and MySQL Workbench, Amazon RDS MySQL
 * Design: Lucidchart
 * Version Control: Git & GitHub
 * API Testing: Postman

@@ -55,32 +55,32 @@ The minimum requirements for the capstone project were:
 
 ### Menu Items Endpoints:
 **GET HTTP:**
-* Get all menu items -> ```GET /api/v1/menu-items```
+* Get all menu items endpoint -> ```GET /api/v1/menu-items```
   * Success (yes, data) returns a 200 HTTP status code 
   * Success (no data) returns a 204 HTTP status code
   * Error reutrns a 500 HTTP status code
   * Data returned: Returned back a list of items
-* Get menu item by id -> ```GET /api/v1/menu-items/:id```
+* Get menu item by id endpoint -> ```GET /api/v1/menu-items/:id```
   * Success returns a 200 HTTP status code 
   * Error reutrns a 500 HTTP status code
   * Data returned: Returns back the item matching the id
 
 **POST HTTP:**
-* Create a menu item -> ```POST /api/v1/menu-items```
+* Create a menu item endpoint -> ```POST /api/v1/menu-items```
   * Success returns a 201 HTTP status code 
   * Error reutrns a 500 HTTP status code
   * Input values: You can only supply values for name, description, picture, and price
   * Data returned: Returns back the created item
 
 **PATCH HTTP:**
-* Update menu item by id -> ```PATCH /api/v1/menu-items/:id```
+* Update menu item by id endpoint -> ```PATCH /api/v1/menu-items/:id```
   * Success returns a 200 HTTP status code 
   * Error reutrns a 500 HTTP status code
   * Input values: You can only supply values for name, description, picture, and price
   * Data returned: Returns back the updated item
 
 **DELETE HTTP:**
-* Delete menu item by id -> ```DELETE /api/v1/menu-items/:id```
+* Delete menu item by id endpoint -> ```DELETE /api/v1/menu-items/:id```
   * Success returns a 204 HTTP status code 
   * Error reutrns a 500 HTTP status code
   * Data returned: No data returned
@@ -88,32 +88,32 @@ The minimum requirements for the capstone project were:
 
 ### Ordered Items Endpoints:
 **GET HTTP:**
-* Get all ordered items -> ```GET /api/v1/ordered-items```
+* Get all ordered items endpoint -> ```GET /api/v1/ordered-items```
   * Success (yes, data) returns a 200 HTTP status code 
   * Success (no data) returns a 204 HTTP status code
   * Error reutrns a 500 HTTP status code
   * Data returned: Returns back a list of items 
-* Get ordered item by id -> ```GET /api/v1/ordered-items/:id```
+* Get ordered item by id endpoint -> ```GET /api/v1/ordered-items/:id```
   * Success returns a 200 HTTP status code
   * Error returns a 500 HTTP status code
   * Data returned: Returns back the item matching the id
 
 **POST HTTP:**
-* Create ordered item -> ```POST /api/v1/ordered-items```
+* Create ordered item endpoint -> ```POST /api/v1/ordered-items```
   * Success returns a 201 HTTP status code
   * Error returns a 500 HTTP status code
   * Input values: You can only supply values for the menu item name, order id, price, and quantity
   * Data returned: Returns back the created item
 
 **PATCH HTTP:**
-* Update ordered item by id -> ```PATCH /api/v1/ordered-items/:id```
+* Update ordered item by id endpoint -> ```PATCH /api/v1/ordered-items/:id```
   * Success returns a 200 HTTP status code
   * Error returns a 500 HTTP status code
   * Input values: You can only supply values for the price and quantity
   * Data returned: Returns back the updated item
 
 **DELETE HTTP:**
-* Delete ordered item by id -> ```DELETE /api/v1/ordered-items/:id```
+* Delete ordered item by id endpoint -> ```DELETE /api/v1/ordered-items/:id```
   * Success returns a 204 HTTP status code
   * Error returns a 500 HTTP status code
   * Data returned: No data returned
@@ -121,36 +121,36 @@ The minimum requirements for the capstone project were:
 
 ### Order IDs Endpoints:
 **GET HTTP:**
-* Get all order ids -> ```GET /api/v1/order-ids```
+* Get all order ids endpoint -> ```GET /api/v1/order-ids```
   * Success (yes, data) returns a 200 HTTP status code 
   * Success (no data) returns a 204 HTTP status code
   * Error reutrns a 500 HTTP status code
   * Data returned: Returns back a list of items 
-* Get order id by id -> ```GET /api/v1/order-ids/:id```
+* Get order id by id endpoint -> ```GET /api/v1/order-ids/:id```
   * Success returns a 200 HTTP status code 
   * Error reutrns a 500 HTTP status code
   * Data returned: Returns back the item matching the id
-* Get all ordered items by order id -> ```GET /api/v1/order-ids/:id/ordered-items```
+* Get all ordered items by order id endpoint -> ```GET /api/v1/order-ids/:id/ordered-items```
   * Success (yes, data) returns a 200 HTTP status code
   * Success (no, data) returns a 204 HTTP status code
   * Data returned: Returns back a list of all of the items for the order id
 
 **POST HTTP:**
-* Create order id -> ```POST /api/v1/order-ids```
+* Create order id endpoint -> ```POST /api/v1/order-ids```
   * Success returns a 201 HTTP status code
   * Error returns a 500 HTTP status code
   * Input values: You can only supply values for the order id, customer id, order status, order placed date, and order completed date
   * Data returned: Returns back the created item
 
 **PATCH HTTP:**
-* Update order id by id -> ```PATCH /api/v1/order-ids/:id```
+* Update order id by id endpoint -> ```PATCH /api/v1/order-ids/:id```
   * Success returns a 200 HTTP status code
   * Error returns a 500 HTTP status code
   * Input values: You can only supply values for the order status and order completed date
   * Data returned: Returns back the updated item
 
 **DELETE HTTP:**
-* Delete order id by id -> ```GET /api/v1/order-ids/:id```
+* Delete order id by id endpoint -> ```GET /api/v1/order-ids/:id```
   * Success returns a 204 HTTP status code
   * Error returns a 500 HTTP status code
   * Data returned: No data returned
@@ -159,7 +159,7 @@ The minimum requirements for the capstone project were:
 
 ## API data examples for GET requests
 
-### GET /api/v1/order-ids
+### Endpoint: GET /api/v1/order-ids
 ```
 {
     "status": "success",
@@ -184,7 +184,7 @@ The minimum requirements for the capstone project were:
 ```
 *Code example above shows the API result for getting all order ids*
 
-### GET /api/v1/order-ids/:id
+### Endpoint: GET /api/v1/order-ids/:id
 
 ```
 {

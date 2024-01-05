@@ -60,8 +60,6 @@ WGU C868 Software Development Capstone - Back End (REST API)
 
 ## Software Packages
 
-[NEED TO UPDATE]
-
 * MySQL Community Server v8.0.35 (macOS 13 ARM, 64-bit)
 * MySQL Workbench v8.0.34 (macOS ARM, 64-bit)
 * Visual Studio Code v1.81.1
@@ -72,3 +70,4 @@ NPM Packages:
 * dotenv
 * express
 * mysql2
+* nodemon

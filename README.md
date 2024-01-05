@@ -40,6 +40,10 @@ The minimum requirements for the capstone project were:
 
 ---
 
+## Class Diagram
+
+---
+
 ## REST API Design
 
 [NEED TO UPDATE]

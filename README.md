@@ -127,7 +127,13 @@ The minimum requirements for the capstone project were:
   * Error reutrns a 500 HTTP status code
   * Data returned: Returns back a list of items 
 * Get order id by id -> ```GET /api/v1/order-ids/:id```
+  * Success returns a 200 HTTP status code 
+  * Error reutrns a 500 HTTP status code
+  * Data returned: Returns back the item matching the id
 * Get all ordered items by order id -> ```GET /api/v1/order-ids/:id/ordered-items```
+  * Success (yes, data) returns a 200 HTTP status code
+  * Success (no, data) returns a 204 HTTP status code
+  * Data returned: Returns back a list of all of the items for the order id
 
 **POST HTTP:**
 * Create order id -> ```POST /api/v1/order-ids```

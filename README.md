@@ -15,7 +15,7 @@ WGU C868 Software Development Capstone - Back End (REST API)
 
 This project was created as a class assignment for WGU, C868. This CRUD Restaurant Management Application was meant to be created for my capstone project.
 
-**Project Prompt:** The prompt for this capstone project was for the most part open ended and just meant to develop an application and deploy it.
+**Project Prompt:** The prompt for this capstone project was open ended and could develop any application to deploy it.
 
 This repository contains the code for the Back End REST API that was created using NodeJS + ExpressJS.
 
